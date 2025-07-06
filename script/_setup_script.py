@@ -10,7 +10,7 @@ STARTING_USDC_BALANCE = int(100e6)
 def _add_eth_balance():
     boa.env.set_balance(boa.env.eoa, STARTING_ETH_BALANCE)
 
-def _add_token_balance(usdc, weth, active_network):
+def _add_token_balance(usdc, weth):
     print(f"USDC balance before: {usdc.balanceOf(boa.env.eoa)}")
     weth.deposit(value=STARTING_WETH_BALANCE)
     our_address = boa.env.eoa
@@ -32,7 +32,7 @@ def setup_script() -> Tuple[ABIContract, ABIContract, ABIContract, ABIContract]:
 
     if active_network.is_local_or_forked_network():
         _add_eth_balance()
-        _add_token_balance(usdc, weth, active_network)
+        _add_token_balance(usdc, weth)
 
 def moccasin_main():
     setup_script()
